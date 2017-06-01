@@ -46932,7 +46932,9 @@ var App = function (_React$Component) {
           null,
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _BooksList2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/admin', component: _BooksForm2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/cart', component: _Cart2.default })
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/cart', component: _Cart2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: _Cart2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { path: '/contact', component: _Cart2.default })
         ),
         _react2.default.createElement(_Footer2.default, null)
       );

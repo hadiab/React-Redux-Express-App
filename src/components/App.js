@@ -16,6 +16,8 @@ class App extends React.Component {
           <Route exact path='/' component={BooksList}/>
           <Route path='/admin' component={BooksForm}/>
           <Route path='/cart' component={Cart}/>
+          <Route path='/about' component={Cart}/>
+          <Route path='/contact' component={Cart}/>
         </Switch>
         <Footer />
       </div>
