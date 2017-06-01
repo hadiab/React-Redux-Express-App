@@ -1,0 +1,24 @@
+body {
+  background: #f8f8f8;
+}
+
+.navbar {
+  border-radius: 0px; 
+}
+
+.badge{
+  background-color: #e74c3c !important;
+  color: #fff !important;
+}
+
+.footer {
+  margin-top: 25px;
+  background: #e8e8e8;
+  padding: 10px;
+}
+
+.footer p {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 10px;
+}

@@ -33,13 +33,15 @@ export default (state=initState, action) => {
       const bookToDelete = [ ...state.books ];
 
       const indexToDelete = bookToDelete.findIndex((book) => {
-        return book._id === action.payload._id;
+        return book._id == action.payload;
       });
 
-      return { books: [ 
+      let books = [ 
         ...bookToDelete.slice(0, indexToDelete),
         ...bookToDelete.slice(indexToDelete + 1)
-      ] }
+      ];
+
+      return { ...state, books: books };
     }
 
     case UPDATE_BOOK: {
