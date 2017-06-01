@@ -1,7 +1,7 @@
 import React from 'react';
 import { Well, Row, Col, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { addToCart } from '../../actions/cartActions';
+import { addToCart, updateCart } from '../../actions/cartActions';
 
 export class BookItem extends React.Component {
 
@@ -10,9 +10,25 @@ export class BookItem extends React.Component {
       _id: this.props.book._id,
       title: this.props.book.title,
       description: this.props.book.description,
-      price: this.props.book.price
-    }]
-    this.props.addToCart(book);
+      price: this.props.book.price,
+      quantity: 1,
+    }];
+    // Check if the cart empty
+    if(this.props.cart.length > 0){
+      let _id = this.props.book._id;
+      let cartIndex = this.props.cart.findIndex((cart) => {
+        return cart._id === _id;
+      });
+      // Check if the book exist in the cart
+      if(cartIndex === -1){
+        this.props.addToCart(book);
+      } else {
+        // Update the quantity
+        this.props.updateCart(_id, 1);
+      }
+    } else {
+      this.props.addToCart(book);
+    }
   }
 
   render() {
@@ -21,12 +37,12 @@ export class BookItem extends React.Component {
       <Well>
         <Row>
           <Col xs={12}> 
-            <h6>{ book.title }</h6>
+            <h6><strong>{ book.title }</strong></h6>
             <p>{ book.description }</p>
             <h6>usd. { book.price }</h6>
             <Button 
               onClick={this.sendToCart.bind(this)} 
-              bsStyle="primary">Buy Now</Button>
+              bsStyle="primary" bsSize="small">Buy Now</Button>
           </Col>
         </Row>
       </Well>
@@ -40,4 +56,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { addToCart })(BookItem);
+export default connect(mapStateToProps, { addToCart, updateCart })(BookItem);
