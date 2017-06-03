@@ -1,5 +1,5 @@
 import React from 'react';
-import { Well, Row, Col, Button } from 'react-bootstrap';
+import { Well, Row, Col, Button, Image } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addToCart, updateCart } from '../../actions/cartActions';
 
@@ -24,7 +24,7 @@ export class BookItem extends React.Component {
         this.props.addToCart(book);
       } else {
         // Update the quantity
-        this.props.updateCart(_id, 1);
+        this.props.updateCart(_id, 1, this.props.cart);
       }
     } else {
       this.props.addToCart(book);
@@ -37,6 +37,7 @@ export class BookItem extends React.Component {
       <Well>
         <Row>
           <Col xs={12}> 
+            <Image src={book.images} responsive />
             <h6><strong>{ book.title }</strong></h6>
             <p>{ book.description }</p>
             <h6>usd. { book.price }</h6>

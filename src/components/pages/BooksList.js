@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getBooks } from '../../actions/booksActions';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Well } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import BookItem from './BookItem';
-import BooksForm from './BooksForm';
 import Cart from './Cart';
 
 class BooksList extends React.Component {
@@ -25,12 +25,16 @@ class BooksList extends React.Component {
     return (
       <Grid>
         <Row>
+          <Col xs={12}>
+            <Well>
+              <Link to="/admin" className={'btn btn-primary'}>Create Book</Link>
+            </Well>
+          </Col>
+        </Row>
+        <Row>
           <Cart />
         </Row>
         <Row>
-          <Col xs={12} sm={6}>
-            <BooksForm />
-          </Col> 
           { booksList }
         </Row>
       </Grid>

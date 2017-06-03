@@ -1,32 +1,34 @@
 import { 
-  GET_BOOKS, DELETE_BOOK, UPDATE_BOOK, CREATE_BOOK 
-} from '../actions/booksActions';
+  GET_BOOKS, DELETE_BOOK, UPDATE_BOOK, CREATE_BOOK, CREATE_BOOK_ERROR, RESET_BUTTON
+} from '../actions/types';
 
 const initState = { 
-  books: [
-    {
-      _id: 1, 
-      title: 'Harry Potter', 
-      description: 'New book was added since 1998',
-      price: 33.90
-    },
-    {
-      _id: 2, 
-      title: 'Node js', 
-      description: 'Node js Book 2011',
-      price: 70.00
-    },
-  ] 
+  books: [] 
 };
 
 export default (state=initState, action) => {
   switch(action.type){
     case GET_BOOKS: {
-      return { ...state, books: [ ...state.books ] }
+      return { ...state, books: [ ...action.payload ] }
     }
 
     case CREATE_BOOK: {
-      return { books: [...state.books, ...action.payload] };
+      return { 
+        ...state, 
+        books: [...state.books, ...action.payload], 
+        msg: 'Saved! click to continue',
+        style: 'success',
+        validation: 'success',
+      };
+    }
+
+    case CREATE_BOOK_ERROR: {
+      return { 
+        ...state, 
+        msg: "Please try again", 
+        style: 'danger', 
+        validation: 'error', 
+      };
     }
 
     case DELETE_BOOK: {
@@ -62,6 +64,11 @@ export default (state=initState, action) => {
         ...bookToUpdate.slice(indexToUpdate + 1)
       ] }
     }
+
+    case RESET_BUTTON: {
+      return { ...state, msg: null, style: 'primary', validation: null, };
+    }
   }
+
   return state;
 }
